@@ -134,8 +134,39 @@ nextflow run nanopore_nextflow.nf -profile zeus -name nxf-${SLURM_JOB_ID} -resum
   ```
   
   
+## Output
   
-  #### References
+  kraken2 output file is tab delimited. A hypothetical example: 
+  
+  
+  ``` 
+  
+  75	250	160	S	211044		Influenza A virus
+  
+  ```
+  
+  
+  #### The columns from left-to-right are as follows:
+  
+  
+* Column 1: Percentage of reads covered by the clade rooted at this taxon
+  
+* Column 2: Number of reads covered by the clade rooted at this taxon
+  
+* Column 3: Number of reads assigned directly to this taxon
+  
+* Column 4: A rank code, indicating (U)nclassified, (D)omain, (K)ingdom, (P)hylum, (C)lass, (O)rder, (F)amily, (G)enus, or (S)pecies. All other ranks are simply “-“.
+  
+* Column 5: NCBI Taxonomy ID
+  
+* Column 6: The scientific name
+
+   
+  <br />
+
+  
+  
+### References
   
   Wood, D.E., Lu, J., Langmead, B., 2019. Improved metagenomic analysis with Kraken 2. Genome Biol. 20, 257. https://doi.org/10.1186/s13059-019-1891-0
   
