@@ -66,7 +66,8 @@ process taxonomy {
   
   * Full path of the database needs to be given in the kraken2 command even if the database is in the same directory
 
-  
+<br />
+<br />
   
   #### Config Script:
   
@@ -112,6 +113,7 @@ params.slurm_account = 'XXXXX'
 ```
   
   
+  
   #### Job Scheduler Script:
   
   
@@ -133,5 +135,12 @@ nextflow run nanopore_nextflow.nf -profile zeus -name nxf-${SLURM_JOB_ID} -resum
   ```
   
   
+  
+  #### References
+  
+  Wood, D.E., Lu, J., Langmead, B., 2019. Improved metagenomic analysis with Kraken 2. Genome Biol. 20, 257. https://doi.org/10.1186/s13059-019-1891-0
+  
+  Wood, D.E., Salzberg, S.L., 2014. Kraken: ultrafast metagenomic sequence classification using exact alignments. Genome Biol. 15, R46. https://doi.org/10.1186/gb-2014-15-3-r46
+
   
 
