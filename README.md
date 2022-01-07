@@ -17,7 +17,10 @@ However, executing Kraken2 (or any job) on HPC using Singularity container and N
 > Config Script: a config script to provide with the container’s link and computing resource allocations. By default, the name of this script is ‘nextflow.config’. If it is named differently, then it needs to be specified in the ‘nextflow run’ command in the following job scheduler script as follows: "nextflow -C XXXXXX.config run <other arguments as required>"  
   
 > Job Scheduler Script: a bash script to schedule the job through the job scheduler ‘SLURM’
- The script set for running Kraken2 on HPC provided by the Pawsey Supercomputer Centre (https://pawsey.org.au/) is presented below.
+  
+  
+  
+ The scripts set for running Kraken2 on HPC provided by the Pawsey Supercomputer Centre (https://pawsey.org.au/) is presented below.
   
   
   #### Job Script:
@@ -58,7 +61,7 @@ process taxonomy {
   #### Notes: 
   
     
-  * Database can be downloaded and built from the scratch following the Kraken2 manual (https://github.com/DerrickWood/kraken2) 
+  * The above database can be downloaded and built from scratch following the Kraken2 manual (https://github.com/DerrickWood/kraken2) 
   
   * Or, the available pre-built databases can be downloaded and used (https://benlangmead.github.io/aws-indexes/k2) 
   
