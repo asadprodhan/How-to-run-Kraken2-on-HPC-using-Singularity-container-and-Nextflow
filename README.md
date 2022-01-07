@@ -20,4 +20,10 @@ However, executing Kraken2 (or any job) on HPC using Singularity container and N
  The script set for running Kraken2 on HPC provided by the Pawsey Supercomputer Centre (https://pawsey.org.au/) is presented below.
   
   
+  #### Job Script:
+  
+  
+  ![alt text](https://github.com/asadprodhan/Kraken2-Tutorial/blob/main/nanopore_nextflow.png)
+
+  
 
