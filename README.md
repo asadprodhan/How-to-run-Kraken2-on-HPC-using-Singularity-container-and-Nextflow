@@ -23,7 +23,102 @@ However, executing Kraken2 (or any job) on HPC using Singularity container and N
   #### Job Script:
   
   
-  ![alt text](https://github.com/asadprodhan/Kraken2-Tutorial/blob/main/nanopore_nextflow.png)
+  ``` #!/usr/bin/env nextflow
 
+//data_location
+
+params.in = "$PWD/*.fasta"
+params.outdir = './results'
+datasets = Channel
+                .fromPath(params.in)
+                .map { file -> tuple(file.simpleName, file) }
+
+
+// taxonomy
+
+process taxonomy {
+    tag "$z"
+    publishDir "${params.outdir}", mode:'copy'
+
+    input:
+    set datasetID, file(z) from datasets
+
+    output:
+    file "${z.baseName}_taxo.tsv" into taxonomy_ch
+        
+    script:
+    """
+    kraken2 --db path/to/the/DB --output ${z.baseName}_taxo.out --report ${z.baseName}_taxo.tsv $z --threads 28
+    
+    """
+}
+```
+  
+  
+  #### Config Script:
+  
+  
+  ``` resume = true
+trace {
+  fields = 'name,hash,status,exit,realtime,submit'
+}
+profiles {
+zeus {
+  workDir = "$PWD/work"
+  process {
+    cache = 'lenient'
+    stageInMode = 'symlink'
+  }
+
+process {
+        withName:taxonomy { container = 'quay.io/biocontainers/kraken2:2.1.2--pl5262h7d875b9_0' }
+    }
+
+singularity {
+ enabled = true
+ autoMounts = true
+ //runOptions = '-e TERM=xterm-256color'
+ envWhitelist = 'TERM'
+}
+params.slurm_account = 'XXXXX'
+  process {
+    executor = 'slurm'
+    clusterOptions = "--account=${params.slurm_account}"
+    queue = 'workq'
+    cpus = 1
+    time = '1h'
+    memory = '10GB'
+        
+    withName: 'taxonomy' {
+      cpus = 28
+      time = '24h'
+    }     
+}
+}
+}
+```
+  
+  
+  #### Job Scheduler Script:
+  
+  
+ ``` #!/bin/bash -l 
+#SBATCH --job-name=nxf-master 
+#SBATCH --account=XXXX 
+#SBATCH --partition=workq 
+#SBATCH --time=1-00:00:00
+#SBATCH --no-requeue 
+#SBATCH --export=none 
+#SBATCH --nodes=1
+
+unset SBATCH_EXPORT 
+
+module load singularity 
+module load nextflow 
+
+nextflow run nanopore_nextflow.nf -profile zeus -name nxf-${SLURM_JOB_ID} -resume --with-report
+  ```
+  
+  
   
 
