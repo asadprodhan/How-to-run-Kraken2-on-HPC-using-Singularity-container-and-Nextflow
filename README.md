@@ -53,6 +53,19 @@ process taxonomy {
     """
 }
 ```
+ 
+ 
+  #### Notes: 
+  
+    
+  * Database can be downloaded and built from the scratch following the Kraken2 manual (https://github.com/DerrickWood/kraken2) 
+  
+  * Or, the available pre-built databases can be downloaded and used (https://benlangmead.github.io/aws-indexes/k2) 
+  
+  * When running Kraken2, the database needs to be in the same computer where the command will be run (for example, in Zeus or Magnus at Pawsey). Preferably, in the same directory
+  
+  * Full path of the database needs to be given in the kraken2 command even if the database is in the same directory
+
   
   
   #### Config Script:
