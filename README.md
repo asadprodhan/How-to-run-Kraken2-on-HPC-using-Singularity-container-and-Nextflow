@@ -67,7 +67,6 @@ process taxonomy {
   * Full path of the database needs to be given in the kraken2 command even if the database is in the same directory
 
 <br />
-<br />
   
   #### Config Script:
   
