@@ -70,7 +70,7 @@ process taxonomy {
   * Full path of the database needs to be given in the kraken2 command even if the database is in the same directory
   
   
-  * At least 100 GB free disk space and 50 GB RAM are required. Kraken2 loads the databse in the local RAM and use it from there. Lack of disk or memory space will result in an error "Error reading the hash table"
+  * At least 100 GB free disk space and 50 GB RAM are required. Kraken2 loads the database in the local RAM and use it from there. Lack of sufficient disk or memory space will result in an error "Error reading the hash table"
   
   
   * "Error reading the hash table" may stem from somehow corrupted files in the database. This might happen during transferring the unzipped database across computers. This problem can be resolved by re-extracting the zipped file of the downloaded Kraken2 database
