@@ -145,19 +145,19 @@ nextflow run nanopore_nextflow.nf -profile zeus -name nxf-${SLURM_JOB_ID} -resum
 
 ## How to run Kraken2 on a local Linux computer?
 
-•	Install Kraken2 
+*	Install Kraken2 
 
-•	Add the Kraken2 path to the PATH environmental variable
+*	Add the Kraken2 path to the PATH environmental variable
 
-•	Download the appropriate Kraken2 database. To download the database, see the above notes
+*	Download the appropriate Kraken2 database. To download the database, see the above notes
 
-•	Make a directory for Kraken2 analysis
+*	Make a directory for Kraken2 analysis
 
-•	Keep the sequencing reads, the database, and the following script in the ‘Kraken2’ directory
+*	Keep the sequencing reads, the database, and the following script in the ‘Kraken2’ directory
 
-•	Make a ‘results’ directory with in the ‘Kraken2’ directory to collect the results
+*	Make a ‘results’ directory with in the ‘Kraken2’ directory to collect the results
 
-•	Run the script as follows: 
+*	Run the script as follows: 
 
 ```
 ./kraken2.sh
@@ -181,7 +181,7 @@ do
 
     baseName=$(basename $F .fastq)
     echo "${Red}${Bold} Processing ${reset}: "${baseName}""
-    kraken2 --db $PWD/bactoIndex --threads 64 --output $PWD/results/"${baseName}_taxo.out" --report $PWD/results/"${baseName}_taxo.tsv" $F
+    kraken2 --db $PWD/kraken2_database --threads 64 --output $PWD/results/"${baseName}_taxo.out" --report $PWD/results/"${baseName}_taxo.tsv" $F 
     echo ""
     echo "${Green}${Bold} Processed and saved as${reset} "${baseName}""
 done
