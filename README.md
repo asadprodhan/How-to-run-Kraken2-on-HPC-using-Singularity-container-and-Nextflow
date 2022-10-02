@@ -6,7 +6,7 @@ Kraken2 is a widely used tool in metagenomic studies. It classifies metagenomic 
 
 Kraken2 builds a database consisting of a k-mer and all the genomes that contain this k-mer. The metagenomic sequences are broken down into k-mers, and each k-mer is queried against the Kraken2-built k-mer database to classify the metagenomic sequences. Metagenomic sequences that have no matched k-mer in the database are labelled as unclassified (Wood et al., 2019; Wood and Salzberg, 2014). 
 
-## How to run on HPC?
+## How to run Kraken2 on HPC cluster using Singularity container and Nextflow?
 
 Generally, the HPC providers do not allow their users to install softwares on the HPC. Singularity containers are a great alternative to physically installing softwares, and even does not require ‘sudo’ privilege. Keeping record of the used containers and their versions facilitates reproducibility of the workflow. On the other hand, Nextflow is a bioinformatics workflow manager allowing the usage of containers.
 
@@ -141,7 +141,53 @@ module load nextflow
 
 nextflow run nanopore_nextflow.nf -profile zeus -name nxf-${SLURM_JOB_ID} -resume --with-report
   ```
-  
+
+
+## How to run Kraken2 on a local Linux computer?
+
+•	Install Kraken2 
+
+•	Add the Kraken2 path to the PATH environmental variable
+
+•	Download the appropriate Kraken2 database. To download the database, see the above notes
+
+•	Make a directory for Kraken2 analysis
+
+•	Keep the sequencing reads, the database, and the following script in the ‘Kraken2’ directory
+
+•	Make a ‘results’ directory with in the ‘Kraken2’ directory to collect the results
+
+•	Run the script as follows: 
+
+```
+./kraken2.sh
+```
+
+
+#### The 'kraken2.sh' Script:
+
+
+```
+#!/usr/bin/env bash
+
+#textFormating
+Red="$(tput setaf 1)"
+Green="$(tput setaf 2)"
+reset=`tput sgr0` # turns off all atribute
+Bold=$(tput bold)
+#
+for F in *.fastq
+do
+
+    baseName=$(basename $F .fastq)
+    echo "${Red}${Bold} Processing ${reset}: "${baseName}""
+    kraken2 --db $PWD/bactoIndex --threads 64 --output $PWD/results/"${baseName}_taxo.out" --report $PWD/results/"${baseName}_taxo.tsv" $F
+    echo ""
+    echo "${Green}${Bold} Processed and saved as${reset} "${baseName}""
+done
+
+```
+
   
 ## Output
   
