@@ -65,7 +65,7 @@ process taxonomy {
   
   * Or, the available pre-built databases can be downloaded and used (https://benlangmead.github.io/aws-indexes/k2) 
   
-      - create and 'cd' into a directory in your Linux computer to download the kraken2 pre-built databases in
+      	    - create and 'cd' into a directory in your Linux computer to download the kraken2 pre-built databases in
       
 	    - go to the above pre-built databases website 
       
@@ -78,16 +78,16 @@ process taxonomy {
 	    - run the following command
       
       
-		    ```
-        wget link_address
-        ```
+		```
+        	wget link_address
+        	```
         
         
 	    - extract the tar zipped database as follows:
       
-      ```
-		  tar -zxvf downloaded_database
-      ```
+      		```
+		tar -zxvf downloaded_database
+     		```
       
 	    - now, you need to refer this directory as you kraken 2 database in the kraken2 script
       
