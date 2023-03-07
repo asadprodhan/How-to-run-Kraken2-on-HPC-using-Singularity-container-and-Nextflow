@@ -64,32 +64,45 @@ process taxonomy {
   * The above database can be downloaded and built from scratch following the Kraken2 manual (https://github.com/DerrickWood/kraken2) 
   
   * Or, the available pre-built databases can be downloaded and used (https://benlangmead.github.io/aws-indexes/k2) 
+	
   
-      	    - create and 'cd' into a directory in your Linux computer to download the kraken2 pre-built databases in
+	- create and 'cd' into a directory in your Linux computer to download the kraken2 pre-built databases in
+	
+	
+	- go to the above pre-built databases website 
+	
+       
+	- go to the HTTPS URL column of the collection table
+	
       
-	    - go to the above pre-built databases website 
+	- right click on the tar.gz file of the corresponding collection
+	
       
-	    - go to the HTTPS URL column of the collection table
+	- copy link address
+	
       
-	    - right click on the tar.gz file of the corresponding collection
-      
-	    - copy link address
-      
-	    - run the following command
+	- run the following command
+	
       
       
 		```
-        	wget link_address
-        	```
+		wget link_address
+		```
         
+	
         
-	    - extract the tar zipped database as follows:
+	- extract the tar zipped database as follows:
+	
       
-      		```
+	
+	
+		```
 		tar -zxvf downloaded_database
-     		```
+		```
       
-	    - now, you need to refer this directory as you kraken 2 database in the kraken2 script
+	
+	
+	- now, you need to refer this directory as you kraken 2 database in the kraken2 script
       
   
   
